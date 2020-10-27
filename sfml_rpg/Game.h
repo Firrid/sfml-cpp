@@ -1,15 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include<iostream>
-#include<ctime>
-#include<cstdlib>
+#include "State.h"
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 
 class Game
 {
@@ -17,6 +10,9 @@ private:
 	//Variables
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
+
+	sf::Clock dtClock;
+	float dt;//delta time
 	//Initialization
 	void initWindow();
 
@@ -27,6 +23,7 @@ public:
 
 
 	//Functions:
+	void updateDt();
 	void updateSFMLEvents();
 	void update();
 	void render();
