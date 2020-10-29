@@ -52,6 +52,16 @@ Game::~Game()
     }
 }
 
+
+
+
+
+//Functions:
+void Game::endApplication()
+{
+    std::cout << "Ending Application!" << "\n";
+}
+
 void Game::updateDt()
 {
     /*Updates the dt variale with the time it takes to update and render one frame.*/
@@ -59,7 +69,6 @@ void Game::updateDt()
 
 }
 
-//Functions:
 void Game::updateSFMLEvents()
 {
     while (this->window->pollEvent(this->sfEvent))
@@ -77,6 +86,19 @@ void Game::update()
     if (!this->states.empty())
     {
         this->states.top()->update(this->dt);
+
+        if (this->states.top()->getQuit())
+        {
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+    //Application end
+    else
+    {
+        this->endApplication();
+        this->window->close();
     }
 
 }
